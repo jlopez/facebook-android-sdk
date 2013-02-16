@@ -110,7 +110,7 @@ public class Session implements Serializable {
      * Session will attempt to load the application id from
      * application/meta-data using this String as the key.
      */
-    public static final String APPLICATION_ID_PROPERTY = "com.facebook.sdk.ApplicationId";
+    public static final String APPLICATION_ID_PROPERTY = "FacebookAppID";
 
     private static final Object STATIC_LOCK = new Object();
     private static Session activeSession;
@@ -209,7 +209,7 @@ public class Session implements Serializable {
         this(currentContext, null, null, true);
     }
 
-    Session(Context context, String applicationId, TokenCachingStrategy tokenCachingStrategy) {
+    public Session(Context context, String applicationId, TokenCachingStrategy tokenCachingStrategy) {
         this(context, applicationId, tokenCachingStrategy, true);
     }
 
