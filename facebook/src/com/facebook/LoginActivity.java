@@ -56,9 +56,19 @@ public class LoginActivity extends Activity {
 
         if (savedInstanceState != null) {
             callingPackage = savedInstanceState.getString(SAVED_CALLING_PKG_KEY);
+			/*
+	        if (callingPackage == null) {
+				throw new FacebookException(NULL_CALLING_PKG_ERROR_MSG);
+			}
+			*/
             authorizationClient = (AuthorizationClient) savedInstanceState.getSerializable(SAVED_AUTH_CLIENT);
         } else {
             callingPackage = getCallingPackage();
+			/*
+	        if (callingPackage == null) {
+				throw new FacebookException(NULL_CALLING_PKG_ERROR_MSG);
+			}
+			*/
             authorizationClient = new AuthorizationClient();
             request = (AuthorizationClient.AuthorizationRequest) getIntent().getSerializableExtra(EXTRA_REQUEST);
         }
@@ -106,9 +116,11 @@ public class LoginActivity extends Activity {
         // If the calling package is null, this generally means that the callee was started
         // with a launchMode of singleInstance. Unfortunately, Android does not allow a result
         // to be set when the callee is a singleInstance, so we throw an exception here.
+		/*
         if (callingPackage == null) {
             throw new FacebookException(NULL_CALLING_PKG_ERROR_MSG);
         }
+		*/
 
         authorizationClient.startOrContinueAuth(request);
     }
@@ -124,7 +136,11 @@ public class LoginActivity extends Activity {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
+		/*
+		if (callingPackage == null) {
+			throw new FacebookException(NULL_CALLING_PKG_ERROR_MSG);
+		}
+		*/
         outState.putString(SAVED_CALLING_PKG_KEY, callingPackage);
         outState.putSerializable(SAVED_AUTH_CLIENT, authorizationClient);
     }
