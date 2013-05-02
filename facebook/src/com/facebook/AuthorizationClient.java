@@ -143,10 +143,10 @@ class AuthorizationClient implements Serializable {
     }
 
     boolean onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (getInProgress()) {
-			if (requestCode == pendingRequest.getRequestCode()) {
-				return currentHandler.onActivityResult(requestCode, resultCode, data);
-			}
+	    if (getInProgress()) {
+            if (requestCode == pendingRequest.getRequestCode()) {
+                return currentHandler.onActivityResult(requestCode, resultCode, data);
+            }
 		}
         return false;
     }
